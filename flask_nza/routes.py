@@ -80,7 +80,9 @@ def createcases():
         case = Case(title, note, user_id)
         db.session.add(case)
         db.session.commit()
-        return redirect(url_for('createcases'))#clears out the form fields
+        return redirect(url_for('createcases'))
+    else:
+        return redirect(url_for('login'))
     return render_template('createcases.html', case=case)
   
 @app.route('/case_detail/<int:case_id>')
@@ -112,3 +114,9 @@ def case_update(case_id):
         return redirect(url_for('case_update', case_id = case.id))
     return render_template('case_update.html', update_form = update_form)
 
+@app.route('/whatwedo')
+def whatwedo():
+    return render_template("whatwedo.html")
+@app.route('/whoweare')
+def whoweare():
+    return render_template("whoweare.html")
